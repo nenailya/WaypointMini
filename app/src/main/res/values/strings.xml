@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">мини</string>
+    <string name="action_settings">Настройки</string>
+    <string name="disconnected">Нет соединения</string>
+    <string name="product_information">Модель</string>
+    <string name="connection_loose">Соединение утеряно</string>
+    <string name="model_not_available">Версия прошивки</string>
+    <string name="sdk_version">DJI SDK: %1$s</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoibmVuYWlseWEiLCJhIjoiY2xocnJxanppMHR3eTNxbnZtNjgzZ3Q5ZiJ9.QEtVj9M74zzuBX_zoKpNAQ</string>
+    <string name="status_no_product_connected">Дрон не подключен</string>
+    <string name="open">Open</string>
+    <string name="settings">Настройки</string>
+    <string name="altitude">Высота</string>
+    <string name="overlap">Перекрытие</string>
+    <string name="speed">Скорость</string>
+    <string name="low">Низкая</string>
+    <string name="Mid">Средняя</string>
+    <string name="High">Высокая</string>
+    <string name="endOfFly">Завершение полета</string>
+    <string name="finishNone">Ничего</string>
+    <string name="finishGoHome">Возврат</string>
+    <string name="finishAutoLanding">Приземление</string>
+</resources>
