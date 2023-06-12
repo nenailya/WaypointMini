@@ -90,7 +90,7 @@ class WaypointActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, OnMa
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.addOnMapClickListener(this)
-        mapboxMap.setStyle(Style.SATELLITE_STREETS) {
+        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
         }
     }
 
@@ -223,7 +223,7 @@ class WaypointActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, OnMa
         markWaypoint(LatLng(waypointsBefore[0].latitude, waypointsBefore[1].longitude, waypointsBefore[1].altitude))
         POINTS.add(OUTER_POINTS)
         mapboxMap?.setStyle(
-            Style.SATELLITE_STREETS
+            Style.MAPBOX_STREETS
         ) { style ->
             style.addSource(
                 GeoJsonSource(
