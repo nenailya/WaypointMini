@@ -127,14 +127,14 @@ class WaypointActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, OnMa
         var prevPoint: LatLng
         while (true) {
             forWaypoints(currentPoint)
-            while (currentPoint.longitude < waypointsBefore[1].longitude){
+                       do{
                 prevPoint = LatLng(currentPoint.latitude, currentPoint.longitude)
                 currentPoint = LatLng(prevPoint.latitude,
                     getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step2, bearing01).longitude())
                 linesBetweenPoints(prevPoint,currentPoint)
                 markWaypoint(currentPoint)
                 forWaypoints(currentPoint)
-            }
+            } while (currentPoint.longitude < waypointsBefore[1].longitude)
             prevPoint = LatLng(currentPoint.latitude, currentPoint.longitude)
             if(currentPoint.latitude>waypointsBefore[1].latitude) break
             currentPoint.latitude = getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step, bearing).latitude()
