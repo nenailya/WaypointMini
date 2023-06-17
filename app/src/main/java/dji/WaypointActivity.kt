@@ -120,23 +120,24 @@ class WaypointActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, OnMa
             Point.fromLngLat(waypointsBefore[0].longitude, waypointsBefore[0].latitude),
         )
         val step =
-            0.5 * 0.0573 * altitude * (100 - overlap) / 100
-        val step2 =
             0.5 * 0.0824 * altitude * (100 - overlap) / 100
-        var currentPoint = waypointsBefore[0]
+        val step2 =
+            0.5 * 0.0573 * altitude * (100 - overlap) / 100
+        var currentPoint = LatLng(getNewCoordinate(waypointsBefore[0].latitude, waypointsBefore[0].longitude, step/2, bearing).latitude(),
+        getNewCoordinate(waypointsBefore[0].latitude, waypointsBefore[0].longitude, step2/2, bearing01).longitude())
         var prevPoint: LatLng
         while (true) {
             forWaypoints(currentPoint)
-                       do{
+           do{
                 prevPoint = LatLng(currentPoint.latitude, currentPoint.longitude)
                 currentPoint = LatLng(prevPoint.latitude,
                     getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step2, bearing01).longitude())
                 linesBetweenPoints(prevPoint,currentPoint)
                 markWaypoint(currentPoint)
                 forWaypoints(currentPoint)
-            } while (currentPoint.longitude < waypointsBefore[1].longitude)
+            } while (getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step2, bearing01).longitude() < waypointsBefore[1].longitude)
             prevPoint = LatLng(currentPoint.latitude, currentPoint.longitude)
-            if(currentPoint.latitude>waypointsBefore[1].latitude) break
+            if(getNewCoordinate(waypointsBefore[0].latitude, waypointsBefore[0].longitude, step, bearing).latitude()>waypointsBefore[1].latitude) break
             currentPoint.latitude = getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step, bearing).latitude()
             linesBetweenPoints(prevPoint,currentPoint)
             markWaypoint(currentPoint)
@@ -150,12 +151,13 @@ class WaypointActivity : AppCompatActivity(), MapboxMap.OnMapClickListener, OnMa
                 forWaypoints(currentPoint)
             }
             prevPoint = LatLng(currentPoint.latitude, currentPoint.longitude)
-            if(currentPoint.latitude>waypointsBefore[1].latitude) break
+            if(getNewCoordinate(waypointsBefore[0].latitude, waypointsBefore[0].longitude, step, bearing).latitude()>waypointsBefore[1].latitude) break
             currentPoint.latitude = getNewCoordinate(prevPoint.latitude, prevPoint.longitude, step, bearing).latitude()
             linesBetweenPoints(prevPoint,currentPoint)
             markWaypoint(currentPoint)
         }
     }
+
 
     private fun getNewCoordinate(
         latitude: Double,
